@@ -23,6 +23,11 @@
 
   <body>
     <div class='container'>
+      <% if logged_in_and_valid_user? %>
+        <p align='center'><%= link_to 'Log out', sessions_path, method: :delete %></p>
+      <% end %>
+    </div>
+    <div class='container'>
       <%= yield %>
     </div>
   </body>

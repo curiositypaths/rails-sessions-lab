@@ -1,0 +1,6 @@
+<h3>Welcome to our login page</h3>
+<%= form_tag sessions_path do %>
+  <p>Name:<br><%= text_field_tag :name %></p>
+  <p>Password:<br><%= text_field_tag :password %></p>
+  <%= submit_tag 'Login' %>
+<% end %>
