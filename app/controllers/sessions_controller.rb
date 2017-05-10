@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if valid_user?
+    @user = User.find_by(name: params[:name])
+    if user_and_password_are_valid?
       session[:user_id] = @user.id
       redirect_to private_path
     else
@@ -19,8 +20,7 @@ class SessionsController < ApplicationController
   end
 
   private
-  def valid_user?
-    @user = User.find_by(name: params[:name])
+  def user_and_password_are_valid?
     @user && @user.authenticate(params[:password])
   end
 end

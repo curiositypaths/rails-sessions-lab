@@ -5,12 +5,16 @@ class ApplicationController < ActionController::Base
 
   helper_method :logged_in_and_valid_user?
 
+  private
   def check_if_user_is_logged_in
     redirect_to login_path unless logged_in_and_valid_user?
   end
 
-  private
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
+
   def logged_in_and_valid_user?
-    session[:user_id] && User.find(session[:user_id])
+    !!current_user
   end
 end
